@@ -1,0 +1,19 @@
+SELECT SYSDATE FORM DUAL;   --Te devuelve la fecha del sistema de una tabla que no existe
+DROP TABLE grupo;
+
+CREATE TABLE grupo; 
+(cod_grupo CHAR(3) PRIMARY KEY,
+curso CHAR(1) NOT NULL,
+turno CHAR(1) DEFAULT 'M'                             --valor por defecto
+CONSTRAINT Manana_o_Tarde CHECK (turno IN ('M','T')), --darle un nombre a una restriccion, la cual solo permite que se guarden valores M o T
+CHECK (curso > '0' AND curso < '4'));        
+
+
+CREATE TABLE alumno             --
+(num_mat CHAR(3),               --
+nombre VARCHAR2(20) UNIQUE,     --clave alternativa
+ciudad CHAR(25) NOT NULL,       --
+cod_grupo CHAR(3),              --Luego le decimos que es una Clave ajena (foreign key)
+PRIMARY KEY (num_mat),          --clave primaria
+FOREIGN KEY (cod_grupo) REFERENCES grupo ON DELETE SET NULL); --decimos que cod_grupo es clave ajena y decimos que si se quisiera borrar la tabla grupo habríamos de borrar la tabla grupo 
+--Si creamos una tabla y volvemos a ejecutar nos dará un error poque no podemos crear una tabla con el mismo nombre, en este ejercicio vamos a usar DROP TABLE nombreTabla par aeliminar la tabla antes de crear otra con el mismo nombre (cuidado, los datos se eliminan)
