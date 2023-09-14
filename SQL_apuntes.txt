@@ -1,5 +1,4 @@
 SELECT SYSDATE FORM DUAL;   --Te devuelve la fecha del sistema de una tabla que no existe
-DROP TABLE grupo;
 
 CREATE TABLE grupo; 
 (cod_grupo CHAR(3) PRIMARY KEY,
